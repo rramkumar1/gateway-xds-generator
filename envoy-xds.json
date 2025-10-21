@@ -1,0 +1,162 @@
+{
+  "Resources": [
+    {
+      "Version": "2025-10-21T17:35:39.734572389Z",
+      "Items": {
+        "default_foo-svc_core_Service_8080": {
+          "Resource": {
+            "name": "default_foo-svc_core_Service_8080",
+            "ClusterDiscoveryType": {
+              "Type": 0
+            },
+            "connect_timeout": {
+              "seconds": 5
+            },
+            "load_assignment": {
+              "cluster_name": "default_foo-svc_core_Service_8080",
+              "endpoints": [
+                {
+                  "lb_endpoints": [
+                    {
+                      "HostIdentifier": {
+                        "Endpoint": {
+                          "address": {
+                            "Address": {
+                              "SocketAddress": {
+                                "address": "34.118.237.40",
+                                "PortSpecifier": {
+                                  "PortValue": 8080
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "LbConfig": null
+                }
+              ]
+            },
+            "LbConfig": null
+          },
+          "TTL": null
+        }
+      }
+    },
+    {
+      "Version": "",
+      "Items": null
+    },
+    {
+      "Version": "2025-10-21T17:35:39.734572389Z",
+      "Items": {
+        "listener-80": {
+          "Resource": {
+            "name": "listener-80",
+            "address": {
+              "Address": {
+                "SocketAddress": {
+                  "address": "0.0.0.0",
+                  "PortSpecifier": {
+                    "PortValue": 80
+                  }
+                }
+              }
+            },
+            "filter_chains": [
+              {
+                "filters": [
+                  {
+                    "name": "envoy.filters.network.http_connection_manager",
+                    "ConfigType": {
+                      "TypedConfig": {
+                        "type_url": "type.googleapis.com/envoy.extensions.filters.network.http_connection_manager.v3.HttpConnectionManager",
+                        "value": "Egtwcm9kLXdlYi1ndyphChllbnZveS5maWx0ZXJzLmh0dHAucm91dGVyIkQKQnR5cGUuZ29vZ2xlYXBpcy5jb20vZW52b3kuZXh0ZW5zaW9ucy5maWx0ZXJzLmh0dHAucm91dGVyLnYzLlJvdXRlchoQCgQwAhoAEghyb3V0ZS04MA=="
+                      }
+                    }
+                  }
+                ]
+              }
+            ],
+            "listener_filters": [
+              {
+                "name": "envoy.filters.listener.tls_inspector",
+                "ConfigType": {
+                  "TypedConfig": {
+                    "type_url": "type.googleapis.com/envoy.extensions.filters.listener.tls_inspector.v3.TlsInspector"
+                  }
+                }
+              }
+            ],
+            "ListenerSpecifier": null
+          },
+          "TTL": null
+        }
+      }
+    },
+    {
+      "Version": "2025-10-21T17:35:39.734572389Z",
+      "Items": {
+        "route-80": {
+          "Resource": {
+            "name": "route-80",
+            "virtual_hosts": [
+              {
+                "name": "prod-web-vh-80-*",
+                "domains": [
+                  "*"
+                ],
+                "routes": [
+                  {
+                    "name": "default-foo-rule0-match0",
+                    "match": {
+                      "PathSpecifier": {
+                        "Prefix": "/"
+                      }
+                    },
+                    "Action": {
+                      "Route": {
+                        "ClusterSpecifier": {
+                          "Cluster": "default_foo-svc_core_Service_8080"
+                        },
+                        "HostRewriteSpecifier": null
+                      }
+                    }
+                  }
+                ]
+              }
+            ],
+            "ignore_port_in_host_matching": true
+          },
+          "TTL": null
+        }
+      }
+    },
+    {
+      "Version": "",
+      "Items": null
+    },
+    {
+      "Version": "",
+      "Items": null
+    },
+    {
+      "Version": "",
+      "Items": null
+    },
+    {
+      "Version": "",
+      "Items": null
+    },
+    {
+      "Version": "",
+      "Items": null
+    },
+    {
+      "Version": "",
+      "Items": null
+    }
+  ],
+  "VersionMap": null
+}
